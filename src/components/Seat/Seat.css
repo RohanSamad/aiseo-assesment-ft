@@ -1,0 +1,24 @@
+.seat {
+  transition: all 0.15s ease;
+  cursor: default;
+}
+
+.seat-clickable {
+  cursor: pointer;
+}
+
+.seat-clickable:hover {
+  filter: brightness(1.2);
+  stroke: #000;
+  stroke-width: 1.5;
+}
+
+.seat-clickable:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.seat-disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

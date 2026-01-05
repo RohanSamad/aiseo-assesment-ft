@@ -1,0 +1,152 @@
+.selection-summary {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.selection-header {
+    padding: 16px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9fafb;
+}
+
+.selection-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.selection-count {
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.selection-empty {
+    padding: 32px 16px;
+    text-align: center;
+    color: #6b7280;
+}
+
+.selection-empty p {
+    margin: 8px 0;
+}
+
+.selection-hint {
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+.selection-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px;
+}
+
+.selection-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    margin-bottom: 8px;
+    background: #f9fafb;
+    border-radius: 6px;
+    transition: background 0.15s;
+}
+
+.selection-item:hover {
+    background: #f3f4f6;
+}
+
+.selection-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.selection-item-name {
+    font-size: 14px;
+    color: #111827;
+    font-weight: 500;
+}
+
+.selection-item-price {
+    font-size: 16px;
+    color: #3b82f6;
+    font-weight: 600;
+}
+
+.selection-item-remove {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: #ef4444;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    line-height: 1;
+    padding: 0;
+}
+
+.selection-item-remove:hover {
+    background: #dc2626;
+    transform: scale(1.1);
+}
+
+.selection-footer {
+    padding: 16px;
+    border-top: 1px solid #e5e7eb;
+    background: #f9fafb;
+}
+
+.selection-subtotal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.selection-subtotal-amount {
+    color: #3b82f6;
+    font-size: 24px;
+}
+
+.selection-clear-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #111827;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.selection-clear-btn:hover {
+    background: #374151;
+}
+
+@media (max-width: 768px) {
+    .selection-summary {
+        max-height: 300px;
+    }
+}

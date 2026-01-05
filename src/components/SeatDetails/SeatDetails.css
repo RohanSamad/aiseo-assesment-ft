@@ -1,0 +1,68 @@
+.seat-details {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.seat-details-empty {
+    color: #6b7280;
+    text-align: center;
+    padding: 24px;
+}
+
+.seat-details h3 {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.seat-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.seat-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.seat-detail-label {
+    font-size: 12px;
+    color: #6b7280;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.seat-detail-value {
+    font-size: 16px;
+    color: #111827;
+    font-weight: 600;
+}
+
+.status-available {
+    color: #22c55e;
+}
+
+.status-reserved {
+    color: #f97316;
+}
+
+.status-sold {
+    color: #6b7280;
+}
+
+.status-held {
+    color: #eab308;
+}
+
+@media (max-width: 768px) {
+    .seat-details-grid {
+        grid-template-columns: 1fr;
+    }
+}
