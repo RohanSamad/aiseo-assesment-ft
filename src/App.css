@@ -1,40 +1,40 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* Fonts handled in index.css */
 
 .app {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  background: #f3f4f6;
+  color: var(--text-primary);
 }
 
 .app-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 12px 24px;
+  z-index: 100;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-shrink: 0;
 }
 
 .app-header h1 {
   margin: 0;
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
+  background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .app-subtitle {
-  margin: 8px 0 0 0;
-  font-size: 16px;
-  opacity: 0.9;
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 400;
 }
 
 .app-content {
@@ -42,7 +42,8 @@ body {
   display: flex;
   gap: 16px;
   padding: 16px;
-  overflow: hidden;
+  min-height: 0;
+  /* Critical for flex children to shrink */
 }
 
 .app-main {
@@ -51,15 +52,26 @@ body {
   flex-direction: column;
   gap: 16px;
   min-width: 0;
-}
-
-.app-details {
-  min-height: 200px;
+  min-height: 0;
+  /* Critical for nested flex */
 }
 
 .app-sidebar {
-  width: 350px;
-  min-width: 350px;
+  width: 300px;
+  flex-shrink: 0;
+  min-height: 0;
+  /* Allow sidebar to shrink if needed */
+}
+
+/* Glass Card Helper Class */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2);
+  padding: 20px;
 }
 
 .app-loading,
@@ -70,15 +82,16 @@ body {
   align-items: center;
   justify-content: center;
   padding: 48px;
+  min-height: 60vh;
 }
 
 .spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid #e5e7eb;
-  border-top-color: #667eea;
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--accent-color);
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  animation: spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes spin {
@@ -89,17 +102,18 @@ body {
 
 .app-loading p {
   margin-top: 16px;
-  color: #6b7280;
+  color: var(--text-secondary);
   font-size: 16px;
+  font-weight: 500;
 }
 
 .app-error h1 {
-  color: #ef4444;
-  margin: 0 0 16px 0;
+  color: #f87171;
+  margin: 0 0 12px 0;
 }
 
 .app-error p {
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 .sr-only {
@@ -115,26 +129,25 @@ body {
 }
 
 /* Mobile responsive */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .app-content {
     flex-direction: column;
+    padding: 16px;
+  }
+
+  .app-header {
+    padding: 16px 20px;
   }
 
   .app-sidebar {
     width: 100%;
     min-width: 100%;
     order: -1;
+    /* Sidebar with Summary on top for mobile */
   }
 
+  /* Make map scrollable if needed or stack */
   .app-main {
     flex: 1;
-  }
-
-  .app-header h1 {
-    font-size: 24px;
-  }
-
-  .app-subtitle {
-    font-size: 14px;
   }
 }

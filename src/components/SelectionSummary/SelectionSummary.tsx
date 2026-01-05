@@ -1,5 +1,5 @@
 import type { Venue, Seat } from '../../types/venue';
-import { getPrice } from '../../utils/priceCalculator';
+import { getPrice, getPriceLabel } from '../../utils/priceCalculator';
 import './SelectionSummary.css';
 
 interface SelectionSummaryProps {
@@ -34,47 +34,60 @@ export function SelectionSummary({
 
     return (
         <div className="selection-summary">
-            <div className="selection-header">
+            <div className="summary-header">
                 <h2>Your Selection</h2>
-                <span className="selection-count">
+                <span className="seat-count">
                     {selectedIds.length} / {maxSeats} seats
                 </span>
             </div>
 
             {selectedIds.length === 0 ? (
-                <div className="selection-empty">
+                <div className="empty-state">
                     <p>No seats selected</p>
-                    <p className="selection-hint">Click on available seats to select (max {maxSeats})</p>
+                    <p>Click on available seats to select (max {maxSeats})</p>
                 </div>
             ) : (
                 <>
-                    <div className="selection-list">
-                        {selectedSeats.map(({ seat, section, row }) => (
-                            <div key={seat.id} className="selection-item">
-                                <div className="selection-item-info">
-                                    <span className="selection-item-name">
-                                        {section} - Row {row}, Seat {seat.col}
-                                    </span>
-                                    <span className="selection-item-price">${getPrice(seat.priceTier)}</span>
-                                </div>
-                                <button
-                                    onClick={() => onRemoveSeat(seat.id)}
-                                    className="selection-item-remove"
-                                    aria-label={`Remove ${section} Row ${row} Seat ${seat.col}`}
-                                >
-                                    ×
-                                </button>
-                            </div>
-                        ))}
+                    <div className="summary-content">
+                        <ul className="selected-list">
+                            {selectedSeats.map(({ seat, section, row }) => (
+                                <li key={seat.id} className="selected-item">
+                                    <div className="item-info">
+                                        <div className="item-location">
+                                            {section} - Row {row}, Seat {seat.col}
+                                        </div>
+                                        <div className="item-tier">
+                                            {getPriceLabel(seat.priceTier)} Tier
+                                        </div>
+                                    </div>
+
+                                    <div className="item-price-actions">
+                                        <div className="item-price">${getPrice(seat.priceTier)}</div>
+                                        <button
+                                            onClick={() => onRemoveSeat(seat.id)}
+                                            className="remove-btn"
+                                            aria-label={`Remove seat`}
+                                        >
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                <path d="M18 6L6 18M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
 
-                    <div className="selection-footer">
-                        <div className="selection-subtotal">
-                            <span>Subtotal:</span>
-                            <span className="selection-subtotal-amount">${subtotal}</span>
+                    <div className="summary-footer">
+                        <div className="total-row">
+                            <span className="total-label">Subtotal</span>
+                            <span className="total-amount">${subtotal}</span>
                         </div>
-                        <button onClick={onClearAll} className="selection-clear-btn">
-                            Clear All
+                        <button className="checkout-btn" disabled={selectedIds.length === 0}>
+                            Proceed to Checkout
+                        </button>
+                        <button onClick={onClearAll} className="clear-btn">
+                            Clear Selection
                         </button>
                     </div>
                 </>
